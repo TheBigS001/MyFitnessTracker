@@ -43,7 +43,7 @@ const need=(T-earned)/rem,len=e-s+1,el=t-s;return{k,earned,T,need,rem,lab,done:e
 const lims=()=>Object.keys(NM).filter(k=>S.cfg.lim[k].on);
 function bkr(){return S.lastBackup==tod()?'':'<div class="w">📝 Daily reminder: copy your backup into Notes. <button class="gd" onclick="A.copyAll()">Copy backup</button></div>'}
 function home(){if(!S.cfg.start)return'<h1>Fitness Points</h1><div class="c g">Welcome. Open <b>Settings</b> and import your data file (or set your start date) to begin.</div>';
-const st=lims().map(stat),w=[];st.forEach(s=>{if(s.k!='day'&&!s.done&&s.need>S.cfg.warn)w.push('You need '+f2(s.need)+' points/day to meet the '+NM[s.k].toLowerCase()+' limit.');if(s.behind)w.push('Behind pace for '+NM[s.k].toLowerCase()+'.')});
+const st=lims().map(stat),w=[];st.forEach(s=>{if(s.k!='day'&&!s.done&&s.need>S.cfg.warn)w.push('You need '+f2(s.need)+' points/day to meet '+NM[s.k].toLowerCase()+' limit.');if(s.behind)w.push('Behind pace for '+NM[s.k].toLowerCase()+'.')});
 C.pens.forEach(p=>{if(p.left>0&&p.dl<0)w.push(p.label+' is overdue: '+f2(p.left)+' points still owed.')});
 const d=st.find(s=>s.k=='day');let h='<h1>Fitness Points</h1>'+bkr()+w.map(x=>'<div class="w">⚠ '+x+'</div>').join('');
 if(d)h+='<div class="c g"><div class="mut">Today</div><div class="big '+(d.done?'ok':'')+'">'+(d.done?'Done ✓':f2(d.T-d.earned)+' points left')+'</div><div class="mut">'+f2(d.earned)+' of '+d.T+' points</div></div>';
